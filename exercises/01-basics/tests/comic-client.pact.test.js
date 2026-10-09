@@ -67,6 +67,9 @@ describe('ReadingApp against the ComicCatalogue API', () => {
     // Create a ComicCatalogueClient pointed at it, fetch comic 1, and expect
     // the title to be 'Barrel - Part 1'.
     await provider.executeTest(async (mock) => {
+      const cata = new ComicCatalogueClient(mock.url);
+      const comic = await cata.getComic(1);
+
       // FILL IN
     });
   });
