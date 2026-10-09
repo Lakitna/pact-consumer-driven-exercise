@@ -1,0 +1,42 @@
+{
+  "name": "pact-consumer-side-training",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Consumer-driven contract testing exercises with Pact (JavaScript) - training material",
+  "author": "Sander van Beek <lakitna@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "demo:consumer:test": "jest demo/tests --runInBand",
+    "demo:provider:start": "node demo/provider/app.js",
+    "demo:provider:test": "node demo/provider/verify.js",
+    "ex01:consumer:test": "jest exercises/01-basics/tests --runInBand",
+    "ex01:consumer:solution": "jest exercises/01-basics/solution --runInBand",
+    "ex02:consumer:test": "jest exercises/02-provider-mismatch/tests --runInBand",
+    "ex02:consumer:solution": "jest exercises/02-provider-mismatch/solution --runInBand",
+    "ex02:provider:start": "node exercises/02-provider-mismatch/provider/app.js",
+    "ex02:provider:test": "node exercises/02-provider-mismatch/provider/verify.js",
+    "ex03:consumer:test": "jest exercises/03-matchers/tests --runInBand",
+    "ex03:consumer:solution": "jest exercises/03-matchers/solution --runInBand",
+    "ex03:provider:start": "node exercises/03-matchers/provider/app.js",
+    "ex03:provider:test": "node exercises/03-matchers/provider/verify.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@pact-foundation/pact": "^17.1.4",
+    "@swc/jest": "^0.2.39",
+    "eslint": "^10.12.0",
+    "eslint-config-prettier": "^10.1.8",
+    "express": "^5.1.0",
+    "globals": "^17.13.0",
+    "jest": "^30.0.0",
+    "prettier": "^3.9.9"
+  }
+}
