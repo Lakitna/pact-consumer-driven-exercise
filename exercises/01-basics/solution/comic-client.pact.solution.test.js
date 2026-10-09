@@ -7,10 +7,10 @@
 
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { describe, expect, it } from '@jest/globals';
 import { PactV3 } from '@pact-foundation/pact';
 import { ComicCatalogueClient } from '../src/comic-client.js';
 
-// ESM equivalent of CJS's `__dirname`.
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const provider = new PactV3({
