@@ -16,6 +16,16 @@ import express from 'express';
 
 const app = express();
 app.use(express.json()); // parses the JSON body of POST /_pactSetup state calls
+app.set('json spaces', 2);
+app.use((req, res, next) => {
+  res.on('finish', () => {
+    console.log(
+      `[${new Date().toUTCString()}] ` +
+      `"${req.method} ${req.originalUrl} HTTP/${req.httpVersion}" ${res.statusCode}`,
+    );
+  });
+  next();
+});
 
 /** Build an RFC 7807 problem+json response (house style for ALL errors). */
 function problem(status, title, detail) {
@@ -73,7 +83,7 @@ app.use('/api', (req, res) => {
  */
 app.post('/_pactSetup', (req, res) => {
   const { state } = req.body;
-  console.log(`[provider-state] setting up: ${state}`);
+  console.log(`[Pact Setup] setting up: ${state}`);
 
   if (state === 'user ada has read 3 comics') {
     shelfByUser = new Map([

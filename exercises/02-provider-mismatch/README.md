@@ -37,7 +37,7 @@ npm run ex02:provider:test      # terminal B: replay the pact against it
 ```
 
 Keep terminal A open - you can watch every request the verifier replays stream by, and
-`curl http://127.0.0.1:9502/api/comics?limit=2` yourself to see what reality returns.
+`curl -v http://127.0.0.1:9502/api/comics?limit=2` yourself to see what reality returns.
 
 Three failures. Read each one like a report from a border inspection:
 
@@ -46,11 +46,6 @@ Three failures. Read each one like a report from a border inspection:
 | 1   |             |                        |                       |
 | 2   |             |                        |                       |
 | 3   |             |                        |                       |
-
-(Deviation #3 is a house-style upgrade: the provider now answers every error with
-[RFC 7807 problem+json](https://www.rfc-editor.org/rfc/rfc7807) — `{ status, title,
-detail }` and Content-Type `application/problem+json`. Your old contract still promises
-a plain `{ error }` body. Adopt the standard shape.)
 
 ## 3. Update the contract
 

@@ -39,7 +39,7 @@ describe('ReadingApp against the ComicCatalogue API', () => {
       })
       .willRespondWith({
         status: 200,
-        headers: { 'Content-Type': 'application/json' },
+        contentType: 'application/json',
         body: [
           {
             id: 1,
@@ -73,7 +73,7 @@ describe('ReadingApp against the ComicCatalogue API', () => {
       })
       .willRespondWith({
         status: 201,
-        headers: { 'Content-Type': 'application/json' },
+        contentType: 'application/json',
         body: {
           id: 1,
           readCount: 43,
@@ -99,9 +99,7 @@ describe('ReadingApp against the ComicCatalogue API', () => {
       })
       .willRespondWith({
         status: 404,
-        headers: { 'Content-Type': 'application/json' },
-        // The consumer's ORIGINAL wish: a simple error field. The provider now
-        // answers with RFC 7807 problem+json instead - deviation #3.
+        contentType: 'application/json',
         body: {
           error: 'not found',
         },

@@ -45,6 +45,7 @@ describe('ReadingApp against the ComicCatalogue API', () => {
       const client = new ComicCatalogueClient(mock.url);
       const comic = await client.getComic(1);
 
+      expect(comic.id).toBe(1);
       expect(comic.title).toBe('Barrel - Part 1');
     });
   });
