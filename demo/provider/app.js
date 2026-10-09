@@ -15,7 +15,7 @@
  * House style: every error response is RFC 7807 application/problem+json.
  */
 
-const express = require('express');
+import express from 'express';
 
 // In-memory "database". Note how it differs from the pact's example values.
 const comics = new Map([
@@ -111,10 +111,11 @@ app.post('/_pactSetup', (req, res) => {
 
 const PORT = 9500;
 
-if (require.main === module) {
+// ESM equivalent of CJS's `require.main === module`: only listen when run directly.
+if (process.argv[1] === import.meta.filename) {
   app.listen(PORT, () => {
     console.log(`ComicCatalogue provider listening on http://127.0.0.1:${PORT}`);
   });
 }
 
-module.exports = app;
+export default app;

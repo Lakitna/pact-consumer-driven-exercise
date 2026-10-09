@@ -15,14 +15,18 @@
  * when reality moves, contract and consumer code move together.
  */
 
-const path = require('path');
-const { PactV3 } = require('@pact-foundation/pact');
-const { ComicCatalogueClient } = require('../src/comic-client.solution');
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { PactV3 } from '@pact-foundation/pact';
+import { ComicCatalogueClient } from '../src/comic-client.solution.js';
+
+// ESM equivalent of CJS's `__dirname`.
+const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const provider = new PactV3({
   consumer: 'ReadingApp',
   provider: 'ComicCatalogue',
-  dir: path.resolve(process.cwd(), 'exercises', '02-provider-mismatch', 'pacts'),
+  dir: path.resolve(dirname, '..', 'pacts'),
 });
 
 describe('ReadingApp against the ComicCatalogue API (updated)', () => {

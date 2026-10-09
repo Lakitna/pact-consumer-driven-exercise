@@ -24,15 +24,19 @@
  * this in detail; here we use matchers from the start so the demo stays green.
  */
 
-const path = require('path');
-const { PactV3, MatchersV3 } = require('@pact-foundation/pact');
-const { ComicCatalogueClient } = require('../src/comic-client');
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { PactV3, MatchersV3 } from '@pact-foundation/pact';
+import { ComicCatalogueClient } from '../src/comic-client.js';
+
+// ESM equivalent of CJS's `__dirname`.
+const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Consumer + provider names define the pact file name: <consumer>-<provider>.json
 const provider = new PactV3({
   consumer: 'MyConsumerApplication',
   provider: 'ComicCatalogue',
-  dir: path.resolve(process.cwd(), 'demo', 'pacts'),
+  dir: path.resolve(dirname, '..', 'pacts'),
 });
 
 describe('ReadingApp against the ComicCatalogue API', () => {

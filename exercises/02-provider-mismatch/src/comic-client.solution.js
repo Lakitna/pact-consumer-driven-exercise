@@ -47,4 +47,4 @@ class ComicCatalogueClient {
   }
 }
 
-module.exports = { ComicCatalogueClient };
+export { ComicCatalogueClient };

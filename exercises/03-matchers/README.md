@@ -63,7 +63,8 @@ describe that body shape.
 Import them once at the top of your test file:
 
 ```js
-const { PactV3, MatchersV3 } = require('@pact-foundation/pact');
+import { PactV3, MatchersV3 } from '@pact-foundation/pact';
+
 const { integer, string, iso8601Date, eachLike } = MatchersV3;
 ```
 

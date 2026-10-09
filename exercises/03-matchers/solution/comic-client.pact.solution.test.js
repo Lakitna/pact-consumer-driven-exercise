@@ -6,16 +6,20 @@
  * format or structure - and the examples are just examples.
  */
 
-const path = require('path');
-const { PactV3, MatchersV3 } = require('@pact-foundation/pact');
-const { ComicCatalogueClient } = require('../src/comic-client');
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { PactV3, MatchersV3 } from '@pact-foundation/pact';
+import { ComicCatalogueClient } from '../src/comic-client.js';
+
+// ESM equivalent of CJS's `__dirname`.
+const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const { integer, string, iso8601Date, eachLike, regex, number } = MatchersV3;
 
 const provider = new PactV3({
   consumer: 'ReadingApp',
   provider: 'ComicCatalogue',
-  dir: path.resolve(process.cwd(), 'exercises', '03-matchers', 'pacts'),
+  dir: path.resolve(dirname, '..', 'pacts'),
 });
 
 describe('ReadingApp against the ComicCatalogue API (with matchers)', () => {

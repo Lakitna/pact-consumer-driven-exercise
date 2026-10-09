@@ -12,7 +12,7 @@
  * House style: every error response is RFC 7807 application/problem+json.
  */
 
-const express = require('express');
+import express from 'express';
 
 const app = express();
 app.use(express.json()); // parses the JSON body of POST /_pactSetup state calls
@@ -94,10 +94,11 @@ app.post('/_pactSetup', (req, res) => {
 
 const PORT = 9503;
 
-if (require.main === module) {
+// ESM equivalent of CJS's `require.main === module`: only listen when run directly.
+if (process.argv[1] === import.meta.filename) {
   app.listen(PORT, () => {
     console.log(`ComicCatalogue provider listening on http://127.0.0.1:${PORT}`);
   });
 }
 
-module.exports = app;
+export default app;

@@ -8,18 +8,15 @@
  *   terminal B:  npm run ex02:provider:test      (this script)
  */
 
-const path = require('path');
-const { Verifier } = require('@pact-foundation/pact');
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { Verifier } from '@pact-foundation/pact';
 
 const PROVIDER_URL = 'http://127.0.0.1:9502';
 
-const pactFile = path.resolve(
-  process.cwd(),
-  'exercises',
-  '02-provider-mismatch',
-  'pacts',
-  'ReadingApp-ComicCatalogue.json',
-);
+// ESM equivalent of CJS's `__dirname`.
+const dirname = path.dirname(fileURLToPath(import.meta.url));
+const pactFile = path.resolve(dirname, '..', 'pacts', 'ReadingApp-ComicCatalogue.json');
 
 new Verifier({
   provider: 'ComicCatalogue',

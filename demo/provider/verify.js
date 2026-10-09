@@ -11,17 +11,15 @@
  *   terminal B:  npm run demo:provider:test      (this script)
  */
 
-const path = require('path');
-const { Verifier } = require('@pact-foundation/pact');
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { Verifier } from '@pact-foundation/pact';
 
 const PROVIDER_URL = 'http://127.0.0.1:9500';
 
-const pactFile = path.resolve(
-  process.cwd(),
-  'demo',
-  'pacts',
-  'MyConsumerApplication-ComicCatalogue.json',
-);
+// ESM equivalent of CJS's `__dirname`.
+const dirname = path.dirname(fileURLToPath(import.meta.url));
+const pactFile = path.resolve(dirname, '..', 'pacts', 'MyConsumerApplication-ComicCatalogue.json');
 
 new Verifier({
   // Who we are, for the report output
